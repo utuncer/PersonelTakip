@@ -5,6 +5,10 @@ VisualStudioVersion = 17.12.35506.116 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonelTakip", "PersonelTakip.csproj", "{E4DF4B5F-9403-4F96-9962-310977067A18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "..\BLL\BLL.csproj", "{6CA06DB9-7D44-4180-BEBC-552529FC7DCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "..\DAL\DAL.csproj", "{D579FB91-F2D9-400D-9DC1-FE7B62CA8F97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{E4DF4B5F-9403-4F96-9962-310977067A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4DF4B5F-9403-4F96-9962-310977067A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4DF4B5F-9403-4F96-9962-310977067A18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CA06DB9-7D44-4180-BEBC-552529FC7DCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CA06DB9-7D44-4180-BEBC-552529FC7DCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CA06DB9-7D44-4180-BEBC-552529FC7DCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CA06DB9-7D44-4180-BEBC-552529FC7DCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D579FB91-F2D9-400D-9DC1-FE7B62CA8F97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D579FB91-F2D9-400D-9DC1-FE7B62CA8F97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D579FB91-F2D9-400D-9DC1-FE7B62CA8F97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D579FB91-F2D9-400D-9DC1-FE7B62CA8F97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
