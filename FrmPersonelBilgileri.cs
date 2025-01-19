@@ -10,13 +10,27 @@ using System.Windows.Forms;
 
 namespace PersonelTakip
 {
-    public partial class Form1 : Form
+    public partial class FrmPersonelBilgileri : Form
     {
-        public Form1()
+        public FrmPersonelBilgileri()
         {
             InitializeComponent();
         }
-        #region
+
+        private void btnKapat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtMaas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Sadece sayı girilmesini sağlayan kod
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void textUserNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Sadece sayı girilmesini sağlayan kod
@@ -25,18 +39,5 @@ namespace PersonelTakip
                 e.Handled = true;
             }
         }
-        #endregion
-
-        private void btnKapat_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void textPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
-
-

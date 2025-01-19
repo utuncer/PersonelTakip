@@ -46,16 +46,79 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FmrPozisyonListesi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmrPozisyonListesi.Designer.cs">
+      <DependentUpon>FmrPozisyonListesi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDepartmanBilgileri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDepartmanBilgileri.Designer.cs">
+      <DependentUpon>FrmDepartmanBilgileri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDepartmanListesi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDepartmanListesi.Designer.cs">
+      <DependentUpon>FrmDepartmanListesi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPersonelBilgileri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPersonelBilgileri.Designer.cs">
+      <DependentUpon>FrmPersonelBilgileri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPersonelListesi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPersonelListesi.Designer.cs">
+      <DependentUpon>FrmPersonelListesi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPozisyonBilgileri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPozisyonBilgileri.Designer.cs">
+      <DependentUpon>FrmPozisyonBilgileri.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FmrPozisyonListesi.resx">
+      <DependentUpon>FmrPozisyonListesi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDepartmanBilgileri.resx">
+      <DependentUpon>FrmDepartmanBilgileri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDepartmanListesi.resx">
+      <DependentUpon>FrmDepartmanListesi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPersonelBilgileri.resx">
+      <DependentUpon>FrmPersonelBilgileri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPersonelListesi.resx">
+      <DependentUpon>FrmPersonelListesi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPozisyonBilgileri.resx">
+      <DependentUpon>FrmPozisyonBilgileri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -65,6 +128,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -88,6 +152,39 @@
       <Project>{d579fb91-f2d9-400d-9dc1-fe7b62ca8f97}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\give-money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\medal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\organization.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\traveler-with-a-suitcase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\workspace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\workspace1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\traveler-with-a-suitcase1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\medal1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

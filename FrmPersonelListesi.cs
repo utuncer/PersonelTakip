@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace PersonelTakip
 {
-    public partial class Form1 : Form
+    public partial class FrmPersonelListesi : Form
     {
-        public Form1()
+        public FrmPersonelListesi()
         {
             InitializeComponent();
         }
-        #region
+
         private void textUserNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Sadece sayı girilmesini sağlayan kod
@@ -25,18 +25,7 @@ namespace PersonelTakip
                 e.Handled = true;
             }
         }
-        #endregion
 
-        private void btnKapat_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
-        private void textPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
-
-
