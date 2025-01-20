@@ -22,5 +22,21 @@ namespace PersonelTakip
             // Bu şekilde uygulamdadn çıkmadan bi önceki sayfaya dönebiliriz
             this.Close();
         }
+
+        private void btnEkle_Click(object sender, EventArgs e)
+        {
+            FrmDepartmanBilgileri frm = new FrmDepartmanBilgileri();
+            this.Hide();
+            frm.ShowDialog();
+            this.Visible = true;
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            FrmDepartmanBilgileri frm = new FrmDepartmanBilgileri();
+            this.Hide();
+            frm.ShowDialog();
+            this.Visible = true;
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace PersonelTakip
 {
-    partial class Form1
+    partial class FrmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -53,7 +53,6 @@
             this.textUserNo.Name = "textUserNo";
             this.textUserNo.Size = new System.Drawing.Size(155, 30);
             this.textUserNo.TabIndex = 0;
-            this.textUserNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textUserNo_KeyPress);
             // 
             // label3
             // 
@@ -72,7 +71,6 @@
             this.textPassword.Name = "textPassword";
             this.textPassword.Size = new System.Drawing.Size(155, 30);
             this.textPassword.TabIndex = 1;
-            this.textPassword.TextChanged += new System.EventHandler(this.textPassword_TextChanged);
             // 
             // btnGiris
             // 
@@ -83,6 +81,7 @@
             this.btnGiris.TabIndex = 2;
             this.btnGiris.Text = "Giriş";
             this.btnGiris.UseVisualStyleBackColor = true;
+            this.btnGiris.Click += new System.EventHandler(this.btnGiris_Click);
             // 
             // btnKapat
             // 
@@ -95,7 +94,7 @@
             this.btnKapat.UseVisualStyleBackColor = true;
             this.btnKapat.Click += new System.EventHandler(this.btnKapat_Click);
             // 
-            // Form1
+            // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -106,7 +105,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textUserNo);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kullanıcı Girişi";
             this.ResumeLayout(false);

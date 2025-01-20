@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace PersonelTakip
 {
-    public partial class FrmPersonelListesi : Form
+    public partial class FrmIsListesi : Form
     {
-        public FrmPersonelListesi()
+        public FrmIsListesi()
         {
             InitializeComponent();
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
 
         private void textUserNo_KeyPress(object sender, KeyPressEventArgs e)
@@ -26,22 +36,30 @@ namespace PersonelTakip
             }
         }
 
+        private void btnKapat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void FrmIsListesi_Load(object sender, EventArgs e)
+        {
+            //  pnlForAdmin.Visible = false;
+        }
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            FrmPersonelBilgileri frm = new FrmPersonelBilgileri();
+            FrmIsBilgileri frm = new FrmIsBilgileri();
             this.Hide();
             frm.ShowDialog();
-            this.Visible = true; //Kapandığında bu formun tekrar görünmesi için
+            this.Visible = true;// Kapatıldığı zaman tekrar gözükmesi için
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
-            FrmPersonelBilgileri frm = new FrmPersonelBilgileri();
+            FrmIsBilgileri frm = new FrmIsBilgileri();
             this.Hide();
             frm.ShowDialog();
-            this.Visible = true;
+            this.Visible = true;// Kapatıldığı zaman tekrar gözükmesi için
         }
     }
 }

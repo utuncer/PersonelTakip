@@ -10,35 +10,29 @@ using System.Windows.Forms;
 
 namespace PersonelTakip
 {
-    public partial class FrmPersonelListesi : Form
+    public partial class FrmPozisyonListesi : Form
     {
-        public FrmPersonelListesi()
+        public FrmPozisyonListesi()
         {
             InitializeComponent();
         }
 
-        private void textUserNo_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnKapat_Click(object sender, EventArgs e)
         {
-            // Sadece sayı girilmesini sağlayan kod
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            this.Close();
         }
-
-
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            FrmPersonelBilgileri frm = new FrmPersonelBilgileri();
+            FrmPozisyonBilgileri frm = new FrmPozisyonBilgileri();
             this.Hide();
             frm.ShowDialog();
-            this.Visible = true; //Kapandığında bu formun tekrar görünmesi için
+            this.Visible = true;
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
-            FrmPersonelBilgileri frm = new FrmPersonelBilgileri();
+            FrmPozisyonBilgileri frm = new FrmPozisyonBilgileri();
             this.Hide();
             frm.ShowDialog();
             this.Visible = true;

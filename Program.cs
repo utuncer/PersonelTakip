@@ -16,7 +16,9 @@ namespace PersonelTakip
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Programın Hangi Forumdan başlayacağını belirliyorum
+            Application.Run(new FrmLogin());
+            //Application.Run(new Form1());
         }
     }
 }

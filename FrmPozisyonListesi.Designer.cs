@@ -1,6 +1,6 @@
 ﻿namespace PersonelTakip
 {
-    partial class FmrPozisyonListesi
+    partial class FrmPozisyonListesi
     {
         /// <summary>
         /// Required designer variable.
@@ -95,6 +95,7 @@
             this.btnGuncelle.TabIndex = 1;
             this.btnGuncelle.Text = "Güncelle";
             this.btnGuncelle.UseVisualStyleBackColor = true;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
             // 
             // btnEkle
             // 
@@ -106,15 +107,16 @@
             this.btnEkle.TabIndex = 0;
             this.btnEkle.Text = "Ekle";
             this.btnEkle.UseVisualStyleBackColor = true;
+            this.btnEkle.Click += new System.EventHandler(this.btnEkle_Click);
             // 
-            // FmrPozisyonListesi
+            // FrmPozisyonListesi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "FmrPozisyonListesi";
+            this.Name = "FrmPozisyonListesi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pozisyon Listesi";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

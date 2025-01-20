@@ -10,33 +10,35 @@ using System.Windows.Forms;
 
 namespace PersonelTakip
 {
-    public partial class Form1 : Form
+    public partial class FrmIzinListesi : Form
     {
-        public Form1()
+        public FrmIzinListesi()
         {
             InitializeComponent();
         }
-        #region
+
         private void textUserNo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Sadece sayı girilmesini sağlayan kod
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
-        #endregion
 
-        private void btnKapat_Click(object sender, EventArgs e)
+        private void btnEkle_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            FrmIzinBilgileri frm = new FrmIzinBilgileri();
+            this.Hide();
+            frm.ShowDialog();
+            this.Visible = true;
         }
 
-        private void textPassword_TextChanged(object sender, EventArgs e)
+        private void btnGuncelle_Click(object sender, EventArgs e)
         {
-
+            FrmIzinBilgileri frm = new FrmIzinBilgileri();
+            this.Hide();
+            frm.ShowDialog();
+            this.Visible = true;
         }
     }
 }
-
-

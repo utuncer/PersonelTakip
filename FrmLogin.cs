@@ -10,16 +10,28 @@ using System.Windows.Forms;
 
 namespace PersonelTakip
 {
-    public partial class FmrPozisyonListesi : Form
+    public partial class FrmLogin : Form
     {
-        public FmrPozisyonListesi()
+        public FrmLogin()
         {
             InitializeComponent();
         }
 
+
         private void btnKapat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
+        }
+
+
+        private void btnGiris_Click(object sender, EventArgs e)
+        {
+            FrmMain frm = new FrmMain();
+            this.Hide();
+
+            frm.ShowDialog();
         }
     }
 }
+
+
