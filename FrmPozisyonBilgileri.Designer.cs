@@ -95,6 +95,7 @@
             this.btnKaydet.TabIndex = 2;
             this.btnKaydet.Text = "Kaydet";
             this.btnKaydet.UseVisualStyleBackColor = true;
+            this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
             // 
             // FrmPozisyonBilgileri
             // 
@@ -110,6 +111,7 @@
             this.Name = "FrmPozisyonBilgileri";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pozisyon Bilgileri";
+            this.Load += new System.EventHandler(this.FrmPozisyonBilgileri_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
