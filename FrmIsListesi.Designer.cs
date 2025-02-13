@@ -44,7 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtAd = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textUserNo = new System.Windows.Forms.TextBox();
+            this.txtUserNo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -142,6 +142,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 303);
@@ -161,7 +162,7 @@
             this.pnlForAdmin.Controls.Add(this.label3);
             this.pnlForAdmin.Controls.Add(this.txtAd);
             this.pnlForAdmin.Controls.Add(this.label2);
-            this.pnlForAdmin.Controls.Add(this.textUserNo);
+            this.pnlForAdmin.Controls.Add(this.txtUserNo);
             this.pnlForAdmin.Controls.Add(this.label1);
             this.pnlForAdmin.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlForAdmin.Location = new System.Drawing.Point(0, 0);
@@ -177,6 +178,7 @@
             this.cmbDepartman.Name = "cmbDepartman";
             this.cmbDepartman.Size = new System.Drawing.Size(155, 33);
             this.cmbDepartman.TabIndex = 4;
+            this.cmbDepartman.SelectedIndexChanged += new System.EventHandler(this.cmbDepartman_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -243,14 +245,14 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Adı";
             // 
-            // textUserNo
+            // txtUserNo
             // 
-            this.textUserNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textUserNo.Location = new System.Drawing.Point(135, 21);
-            this.textUserNo.Name = "textUserNo";
-            this.textUserNo.Size = new System.Drawing.Size(155, 30);
-            this.textUserNo.TabIndex = 0;
-            this.textUserNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textUserNo_KeyPress);
+            this.txtUserNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txtUserNo.Location = new System.Drawing.Point(135, 21);
+            this.txtUserNo.Name = "txtUserNo";
+            this.txtUserNo.Size = new System.Drawing.Size(155, 30);
+            this.txtUserNo.TabIndex = 0;
+            this.txtUserNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textUserNo_KeyPress);
             // 
             // label1
             // 
@@ -301,6 +303,7 @@
             this.btnTemizle.TabIndex = 22;
             this.btnTemizle.Text = "Temizle";
             this.btnTemizle.UseVisualStyleBackColor = true;
+            this.btnTemizle.Click += new System.EventHandler(this.btnTemizle_Click);
             // 
             // btnAra
             // 
@@ -312,6 +315,7 @@
             this.btnAra.TabIndex = 21;
             this.btnAra.Text = "Ara";
             this.btnAra.UseVisualStyleBackColor = true;
+            this.btnAra.Click += new System.EventHandler(this.btnAra_Click);
             // 
             // cmbIsDurum
             // 
@@ -461,7 +465,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtAd;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textUserNo;
+        private System.Windows.Forms.TextBox txtUserNo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
