@@ -42,7 +42,6 @@ namespace PersonelTakip
             label10.Visible = false;
             dto = IsBLL.GetAll();
             dataGridView1.DataSource = dto.Personeller;
-
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].HeaderText = "User No";
             dataGridView1.Columns[2].HeaderText = "Ad";

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL.DTO;
+using BLL;
 
 namespace PersonelTakip
 {
@@ -28,6 +30,9 @@ namespace PersonelTakip
             this.Hide();
             frm.ShowDialog();
             this.Visible = true;// Kapatıldığı zaman tekrar gözükmesi için
+            combofull = false;
+            Doldur();
+            Temizle();
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
@@ -36,6 +41,107 @@ namespace PersonelTakip
             this.Hide();
             frm.ShowDialog();
             this.Visible = true;// Kapatıldığı zaman tekrar gözükmesi için
+            combofull = false;
+            Doldur();
+            Temizle();
+        }
+        MaasDTO dto = new MaasDTO();
+        bool combofull = false;
+
+        private void FrmMaasListesi_Load(object sender, EventArgs e)
+        {
+            Doldur();
+        }
+
+        private void Doldur()
+        {
+            dto = MaasBLL.GetAll();
+            dataGridView1.DataSource = dto.Maaslar;
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].HeaderText = "User No";
+            dataGridView1.Columns[2].HeaderText = "Ad";
+            dataGridView1.Columns[3].HeaderText = "Soyad";
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].Visible = false;
+            dataGridView1.Columns[8].HeaderText = "Yıl";
+            dataGridView1.Columns[9].HeaderText = "Ay";
+            dataGridView1.Columns[10].HeaderText = "Maaş";
+            dataGridView1.Columns[11].Visible = false;
+
+            cmbDepartman.DataSource = dto.Departmanlar;
+            cmbDepartman.DisplayMember = "DepartmanAd";
+            cmbDepartman.ValueMember = "ID";
+            cmbDepartman.SelectedIndex = -1;
+            if (dto.Departmanlar.Count > 0)
+                combofull = true;
+            cmbPozisyon.DataSource = dto.Pozisyonlar;
+            cmbPozisyon.DisplayMember = "PozisyonAd";
+            cmbPozisyon.ValueMember = "ID";
+            cmbPozisyon.SelectedIndex = -1;
+
+            cmbAylar.DataSource = dto.Aylar;
+            cmbAylar.DisplayMember = "Ay";
+            cmbAylar.ValueMember = "ID";
+            cmbAylar.SelectedIndex = -1;
+        }
+
+        private void cmbDepartman_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (combofull)
+            {
+                int departmanID = Convert.ToInt32(cmbDepartman.SelectedValue);
+                cmbPozisyon.DataSource = dto.Pozisyonlar.Where(x => x.DepartmanID == departmanID).ToList();
+            }
+        }
+        List<MaasDetayDTO> listt = new List<MaasDetayDTO>();
+        private void btnAra_Click(object sender, EventArgs e)
+        {
+            listt = dto.Maaslar;
+            if (textUserNo.Text.Trim() != "")
+                listt = listt.Where(x => x.UserNo == Convert.ToInt32(textUserNo.Text)).ToList();
+            if (txtAd.Text.Trim() != "")
+                listt = listt.Where(x => x.Ad.Contains(txtAd.Text)).ToList();
+            if (txtSoyad.Text.Trim() != "")
+                listt = listt.Where(x => x.Soyad.Contains(txtSoyad.Text)).ToList();
+            if (cmbDepartman.SelectedIndex != -1)
+                listt = listt.Where(x => x.DepartmanID == Convert.ToInt32(cmbDepartman.SelectedValue)).ToList();
+            if (cmbPozisyon.SelectedIndex != -1)
+                listt = listt.Where(x => x.PozisyonID == Convert.ToInt32(cmbPozisyon.SelectedValue)).ToList();
+            if (cmbAylar.SelectedIndex != -1)
+                listt = listt.Where(x => x.MaasAyID == Convert.ToInt32(cmbAylar.SelectedValue)).ToList();
+            if (txtYil.Text.Trim() != "")
+                listt = listt.Where(x => x.MaasYil == Convert.ToInt32(txtYil.Text)).ToList();
+            if (rbBuyuk.Checked)
+                listt = listt.Where(x => x.MaasMiktar > Convert.ToInt32(txtMaas.Text)).ToList();
+            else if (rbKucuk.Checked)
+                listt = listt.Where(x => x.MaasMiktar < Convert.ToInt32(txtMaas.Text)).ToList();
+            else if (rbEsit.Checked)
+                listt = listt.Where(x => x.MaasMiktar == Convert.ToInt32(txtMaas.Text)).ToList();
+            dataGridView1.DataSource = listt;
+        }
+
+        void Temizle()
+        {
+            dataGridView1.DataSource = dto.Maaslar;
+            txtAd.Clear();
+            txtSoyad.Clear();
+            textUserNo.Clear();
+            txtMaas.Clear();
+            txtYil.Clear();
+            cmbAylar.SelectedIndex = -1;
+            cmbDepartman.SelectedIndex = -1;
+            cmbPozisyon.DataSource = dto.Pozisyonlar;
+            cmbPozisyon.SelectedIndex = -1;
+            rbBuyuk.Checked = false;
+            rbKucuk.Checked = false;
+            rbEsit.Checked = false;
+        }
+
+        private void btnTemizle_Click(object sender, EventArgs e)
+        {
+            Temizle();
         }
     }
 }
