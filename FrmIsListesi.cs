@@ -46,6 +46,7 @@ namespace PersonelTakip
         bool combofull = false;
         private void FrmIsListesi_Load(object sender, EventArgs e)
         {
+            MessageBox.Show(UserStatic.PersonelID.ToString() + " " + UserStatic.UserNo.ToString() + " " + UserStatic.isAdmin.ToString());
             //  pnlForAdmin.Visible = false;
             Doldur();
         }
