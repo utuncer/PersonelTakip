@@ -26,6 +26,8 @@ namespace PersonelTakip
         }
         MaasDTO dto = new MaasDTO();
         bool combofull = false;
+        public bool isUpdate = false;
+        public MaasDetayDTO detay = new MaasDetayDTO();
         private void FrmMaasBilgileri_Load(object sender, EventArgs e)
         {
             dto = MaasBLL.GetAll();
@@ -60,6 +62,16 @@ namespace PersonelTakip
             cmbAylar.ValueMember = "ID";
             cmbAylar.SelectedIndex = -1;
             txtYil.Text = DateTime.Today.Year.ToString();
+
+            if (isUpdate)
+            {
+                txtAd.Text = detay.Ad;
+                txtSoyad.Text = detay.Soyad;
+                txtMaas.Text = detay.MaasMiktar.ToString();
+                txtYil.Text = detay.MaasYil.ToString();
+                textUserNo.Text = detay.UserNo.ToString();
+                cmbAylar.SelectedValue = detay.MaasAyID;
+            }
         }
 
         private void cmbDepartman_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,6 +83,7 @@ namespace PersonelTakip
             }
         }
         MAA maas = new MAA();
+        int maasmiktar = 0;
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             //User no için 1, Ad için 2, Soyad için 3, Maaş için 8
@@ -79,6 +92,7 @@ namespace PersonelTakip
             txtAd.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtSoyad.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtMaas.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+            maasmiktar = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
         }
 
         private void btnKaydet_Click(object sender, EventArgs e)
@@ -93,12 +107,40 @@ namespace PersonelTakip
                 MessageBox.Show("Ay Giriniz");
             else
             {
-                maas.Ay_ID = Convert.ToInt32(cmbAylar.SelectedValue);
-                maas.Miktar = Convert.ToInt32(txtMaas.Text);
-                maas.YIL = Convert.ToInt32(txtYil.Text);
-                MaasBLL.MaasEkle(maas);
-                MessageBox.Show("Maaş Eklendi.");
-                txtMaas.Clear();
+                bool control = false;
+                if (isUpdate)
+                {
+                    DialogResult result = MessageBox.Show("Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        MaasDetayDTO maas = new MaasDetayDTO();
+                        maas.MaasID = detay.MaasID;
+                        maas.MaasAyID = Convert.ToInt32(cmbAylar.SelectedValue);
+                        maas.MaasYil = Convert.ToInt32(txtYil.Text);
+                        maas.EskiMaas = detay.MaasMiktar;
+                        maas.PersonelID = detay.PersonelID;
+                        maas.MaasMiktar = Convert.ToInt32(txtYil.Text);
+                        
+                        if (maas.MaasMiktar > maas.EskiMaas)
+                            control = true;
+                        MaasBLL.MaasGuncelle(maas, control);
+                        MessageBox.Show("Maaş Güncellendi");
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    if (Convert.ToInt32(txtMaas.Text) > maasmiktar)
+                        control = true;
+
+                    maas.Ay_ID = Convert.ToInt32(cmbAylar.SelectedValue);
+                    maas.Miktar = Convert.ToInt32(txtMaas.Text);
+                    maas.YIL = Convert.ToInt32(txtYil.Text);
+                    MaasBLL.MaasEkle(maas, control);
+                    MessageBox.Show("Maaş Eklendi.");
+                    txtMaas.Clear();
+                    maas = new MAA();
+                }
             }
 
         }

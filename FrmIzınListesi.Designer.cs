@@ -375,6 +375,7 @@
             this.btnReddet.TabIndex = 1;
             this.btnReddet.Text = "Reddet";
             this.btnReddet.UseVisualStyleBackColor = true;
+            this.btnReddet.Click += new System.EventHandler(this.btnReddet_Click);
             // 
             // btnOnayla
             // 
@@ -386,6 +387,7 @@
             this.btnOnayla.TabIndex = 0;
             this.btnOnayla.Text = "Onayla";
             this.btnOnayla.UseVisualStyleBackColor = true;
+            this.btnOnayla.Click += new System.EventHandler(this.btnOnayla_Click);
             // 
             // btnKapat
             // 
@@ -444,6 +446,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1061, 452);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
             // FrmIzinListesi
             // 

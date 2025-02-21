@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.CodeDom;
+using System.Diagnostics.Contracts;
 
 namespace PersonelTakip
 {
@@ -45,6 +46,9 @@ namespace PersonelTakip
             }
         }
         PersonelDTO dto = new PersonelDTO();
+        public PersonelDetayDTO detay = new PersonelDetayDTO();
+        public bool isUpdate = false;
+        string resim2 = "";
         private void FrmPersonelBilgileri_Load(object sender, EventArgs e)
         {
             dto = PersonelBLL.GetAll();
@@ -62,6 +66,23 @@ namespace PersonelTakip
             {
                 combofull = true;
             }
+
+            if (isUpdate)
+            {
+                txtAd.Text = detay.Ad;
+                txtAdress.Text = detay.Adres;
+                txtMaas.Text = detay.Maas.ToString();
+                txtPassword.Text = detay.password;
+                txtSoyad.Text = detay.Soyad;
+                txtUserNo.Text = detay.UserNo.ToString();
+                chbIsAdmin.Checked = detay.isAdmin;
+                cmbDepartman.SelectedValue = detay.DepartmanID;
+                cmbPozisyon.SelectedValue = detay.PozisyonID;
+                resim2 = Application.StartupPath + "\\resimler\\" + detay.Resim;
+                txtResim.Text = resim2;
+                pictureBox1.Load(resim2);
+            }
+
         }
         string resimad = "";
         bool combofull = false;
@@ -112,39 +133,72 @@ namespace PersonelTakip
                 MessageBox.Show("Pozisyon Boş");
             else
             {
-                PERSONEL pr = new PERSONEL();
-                pr.UserNo = Convert.ToInt32(txtUserNo.Text);
-                pr.Ad = txtAd.Text;
-                pr.Soyad = txtSoyad.Text;
-                pr.Maas = Convert.ToInt32(txtMaas.Text);
-                pr.isAdmin = chbIsAdmin.Checked;
-                pr.Password = txtPassword.Text;
-                pr.PozisyonID = Convert.ToInt32(cmbPozisyon.SelectedValue);
-                pr.DepartmanID = Convert.ToInt32(cmbDepartman.SelectedValue);
-                pr.DogumGunu = dateTimePicker1.Value;
-                pr.Adres = txtAdress.Text;
-                pr.Resim = resimad;
+                if (isUpdate)
+                {
+                    DialogResult result = MessageBox.Show("Emin misin?", "Dikkat", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        PersonelDetayDTO pr = new PersonelDetayDTO();
+                        pr.PersonelID = detay.PersonelID;
+                        pr.UserNo = Convert.ToInt32(txtUserNo.Text);
+                        pr.Ad = txtAd.Text;
+                        pr.Soyad = txtSoyad.Text;
+                        pr.Maas = Convert.ToInt32(txtMaas.Text);
+                        pr.isAdmin = chbIsAdmin.Checked;
+                        pr.password = txtPassword.Text;
+                        pr.PozisyonID = Convert.ToInt32(cmbPozisyon.SelectedValue);
+                        pr.DepartmanID = Convert.ToInt32(cmbDepartman.SelectedValue);
+                        pr.DogumTarihi = dateTimePicker1.Value;
+                        pr.Adres = txtAdress.Text;
+                        if (resim2 != txtResim.Text)
+                        {
+                            pr.Resim = resimad;
+                            if (File.Exists(resim2))
+                                File.Delete(resim2);
+                            File.Copy(txtResim.Text, @"resimler\\" + resimad);
+                        }
+                        else
+                            pr.Resim = detay.Resim;
+                        PersonelBLL.PersonelGuncelle(pr);
+                        MessageBox.Show("Güncellendi");
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    PERSONEL pr = new PERSONEL();
+                    pr.UserNo = Convert.ToInt32(txtUserNo.Text);
+                    pr.Ad = txtAd.Text;
+                    pr.Soyad = txtSoyad.Text;
+                    pr.Maas = Convert.ToInt32(txtMaas.Text);
+                    pr.isAdmin = chbIsAdmin.Checked;
+                    pr.Password = txtPassword.Text;
+                    pr.PozisyonID = Convert.ToInt32(cmbPozisyon.SelectedValue);
+                    pr.DepartmanID = Convert.ToInt32(cmbDepartman.SelectedValue);
+                    pr.DogumGunu = dateTimePicker1.Value;
+                    pr.Adres = txtAdress.Text;
+                    pr.Resim = resimad;
 
-                PersonelBLL.PersonelEkle(pr);
-                File.Copy(txtResim.Text, @"resimler\\" + resimad);
+                    PersonelBLL.PersonelEkle(pr);
+                    File.Copy(txtResim.Text, @"resimler\\" + resimad);
 
-                txtUserNo.Clear();
-                txtAd.Clear();
-                txtSoyad.Clear();
-                txtMaas.Clear();
-                chbIsAdmin.Checked = false;
-                txtPassword.Clear();
+                    txtUserNo.Clear();
+                    txtAd.Clear();
+                    txtSoyad.Clear();
+                    txtMaas.Clear();
+                    chbIsAdmin.Checked = false;
+                    txtPassword.Clear();
 
-                cmbDepartman.SelectedIndex = -1;
-                cmbPozisyon.DataSource = dto.Pozisyonlar;
-                cmbPozisyon.SelectedIndex = -1;
+                    cmbDepartman.SelectedIndex = -1;
+                    cmbPozisyon.DataSource = dto.Pozisyonlar;
+                    cmbPozisyon.SelectedIndex = -1;
 
-                dateTimePicker1.Value = DateTime.Today;
-                txtAdress.Clear();
-                resimad = "";
+                    dateTimePicker1.Value = DateTime.Today;
+                    txtAdress.Clear();
+                    resimad = "";
 
-                MessageBox.Show("Personel Eklendi");
-
+                    MessageBox.Show("Personel Eklendi");
+                }
             }
         }
 

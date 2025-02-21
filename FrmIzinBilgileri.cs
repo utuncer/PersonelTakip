@@ -35,9 +35,18 @@ namespace PersonelTakip
             this.Close();
         }
         TimeSpan sure = new TimeSpan();
+        public bool isUpdate = false;
+        public IzinDetayDTO detay = new IzinDetayDTO();
         private void FrmIzinBilgileri_Load(object sender, EventArgs e)
         {
             textUserNo.Text = UserStatic.UserNo.ToString();
+            if (isUpdate)
+            {
+                dpBaslama.Value = detay.BaslamaTarihi;
+                dpBitis.Value = detay.BitisTarihi;
+                txtSure.Text = detay.Sure.ToString();
+                txtAciklama.Text = detay.Aciklama;
+            }
         }
 
         private void dpBaslama_ValueChanged(object sender, EventArgs e)
@@ -62,19 +71,40 @@ namespace PersonelTakip
                 MessageBox.Show("Lütfen Açıklama Giriniz");
             else
             {
-                IZIN iz = new IZIN();
-                iz.PersonelID = UserStatic.PersonelID;
-                iz.IzinDurumID = 1;
-                iz.IzınBaslamaTarihi = dpBaslama.Value;
-                iz.IzınBitisTarihi = dpBitis.Value;
-                iz.Sure = Convert.ToInt32(sure.TotalDays);
-                iz.Aciklama = txtAciklama.Text;
-                IzinBLL.IzinEkle(iz);
-                MessageBox.Show("İzin Eklendi");
-                dpBaslama.Value = DateTime.Today;
-                dpBitis.Value = DateTime.Today;
-                txtSure.Clear();
-                txtAciklama.Clear();
+
+                if (isUpdate)
+                {
+                    DialogResult result = MessageBox.Show("Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        IzinDetayDTO detaydto = new IzinDetayDTO();
+                        detaydto.IzinID = detay.IzinID;
+                        detaydto.Aciklama = txtAciklama.Text;
+                        detaydto.Sure = Convert.ToInt32(txtSure.Text);
+                        detaydto.BaslamaTarihi = dpBaslama.Value;
+                        detaydto.BitisTarihi = dpBitis.Value;
+                        IzinBLL.IzinGuncelle(detaydto);
+                        MessageBox.Show("Güncellendi");
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    IZIN iz = new IZIN();
+                    iz.PersonelID = UserStatic.PersonelID;
+                    iz.IzinDurumID = 1;
+                    iz.IzinBaslamaTarihi = dpBaslama.Value;
+                    iz.IzinBaslamaTarihi = dpBaslama.Value;
+                    iz.IzinBitisTarihi = dpBitis.Value;
+                    iz.Sure = Convert.ToInt32(sure.TotalDays);
+                    iz.Aciklama = txtAciklama.Text;
+                    IzinBLL.IzinEkle(iz);
+                    MessageBox.Show("İzin Eklendi");
+                    dpBaslama.Value = DateTime.Today;
+                    dpBitis.Value = DateTime.Today;
+                    txtSure.Clear();
+                    txtAciklama.Clear();
+                }
             }
         }
     }

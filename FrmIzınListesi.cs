@@ -31,6 +31,7 @@ namespace PersonelTakip
         {
             FrmIzinBilgileri frm = new FrmIzinBilgileri();
             this.Hide();
+            frm.isUpdate = false;
             frm.ShowDialog();
             this.Visible = true;
             combofull = false;
@@ -40,13 +41,22 @@ namespace PersonelTakip
 
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
-            FrmIzinBilgileri frm = new FrmIzinBilgileri();
-            this.Hide();
-            frm.ShowDialog();
-            this.Visible = true;
-            combofull = false;
-            Doldur();
-            Temizle();
+            if (detay.IzinID == 0)
+                MessageBox.Show("Lütfen izin seçiniz");
+            else
+            {
+                FrmIzinBilgileri frm = new FrmIzinBilgileri();
+                this.Hide();
+                frm.isUpdate = true;
+                frm.detay = detay;
+                frm.ShowDialog();
+                this.Visible = true;
+                combofull = false;
+                Doldur();
+                Temizle();
+            }
+
+
         }
         IzinDTO dto = new IzinDTO();
         bool combofull;
@@ -67,7 +77,7 @@ namespace PersonelTakip
             dataGridView1.Columns[9].HeaderText = "Bitiş Tarihi";
             dataGridView1.Columns[10].Visible = false;
             dataGridView1.Columns[11].Visible = false;
-            dataGridView1.Columns[12].Visible = false;
+            dataGridView1.Columns[12].HeaderText = "İzin Durumu";
             dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[14].Visible = false;
 
@@ -143,6 +153,43 @@ namespace PersonelTakip
         private void btnTemizle_Click(object sender, EventArgs e)
         {
             Temizle();
+        }
+        IzinDetayDTO detay = new IzinDetayDTO();
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            //IzinDetayDTO'da IzinID 14. sırada olduğundan 14 yazdık
+            detay.IzinID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[14].Value);
+            detay.BaslamaTarihi = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[8].Value);
+            detay.BitisTarihi = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[9].Value);
+            detay.UserNo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
+            detay.Sure = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[11].Value);
+            detay.Aciklama = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
+        }
+
+        private void btnOnayla_Click(object sender, EventArgs e)
+        {
+            if (detay.IzinID == 0)
+                MessageBox.Show("Lütfen izin seçin");
+            else
+            {
+                IzinBLL.IzinGuncelle(detay.IzinID, ComboStatic.Onayla);
+                MessageBox.Show("Onaylandı");
+                Temizle();
+                Doldur();
+            }
+        }
+
+        private void btnReddet_Click(object sender, EventArgs e)
+        {
+            if (detay.IzinID == 0)
+                MessageBox.Show("Lütfen izin seçin");
+            else
+            {
+                IzinBLL.IzinGuncelle(detay.IzinID, ComboStatic.Reddedildi);
+                MessageBox.Show("Reddedildi");
+                Temizle();
+                Doldur();
+            }
         }
     }
 }
