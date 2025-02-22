@@ -90,6 +90,7 @@
             this.Name = "FrmDepartmanBilgileri";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Departman Bilgileri";
+            this.Load += new System.EventHandler(this.FrmDepartmanBilgileri_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

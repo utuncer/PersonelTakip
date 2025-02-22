@@ -29,6 +29,7 @@ namespace PersonelTakip
         {
             FrmDepartmanBilgileri frm = new FrmDepartmanBilgileri();
             this.Hide();
+            frm.isUpdate = false;
             frm.ShowDialog();
             this.Visible = true;
             liste = DepartmanBLL.DepartmanGetir();
@@ -39,19 +40,30 @@ namespace PersonelTakip
         {
             FrmDepartmanBilgileri frm = new FrmDepartmanBilgileri();
             this.Hide();
+            frm.isUpdate = true;
+            frm.detay = detay;
             frm.ShowDialog();
             this.Visible = true;
+            liste = DepartmanBLL.DepartmanGetir();
+            dataGridView1.DataSource = liste;
         }
-            List<DEPARTMAN> liste = new List<DEPARTMAN>();
+        List<DEPARTMAN> liste = new List<DEPARTMAN>();
+        DEPARTMAN detay = new DEPARTMAN();
         private void FrmDepartmanListesi_Load(object sender, EventArgs e)
         {
 
             liste = DepartmanBLL.DepartmanGetir();
-            dataGridView1.DataSource= liste;
+            dataGridView1.DataSource = liste;
 
             // dataGridView1.Columns[0].HeaderText = "Departman ID"; // ID kısmı genellikle kullanıcıya gösterilmez
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].HeaderText = "Departman Adı";
+        }
+
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            detay.ID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            detay.DepartmanAd = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
         }
     }
 }

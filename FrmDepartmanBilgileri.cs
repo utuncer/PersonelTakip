@@ -34,11 +34,34 @@ namespace PersonelTakip
             else
             {
                 DEPARTMAN dpt = new DEPARTMAN();
-                dpt.DepartmanAd = txtDepartmanAd.Text;
-                DepartmanBLL.DepartmanEkle(dpt);
-                MessageBox.Show("Departman Eklendi");
-                txtDepartmanAd.Clear();
+                if (isUpdate)
+                {
+                    DialogResult result = MessageBox.Show("Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        dpt.DepartmanAd = txtDepartmanAd.Text;
+                        dpt.ID = detay.ID;
+                        DepartmanBLL.DepartmanGuncelle(dpt);
+                        MessageBox.Show("Güncellendi");
+                        this.Close();
+                    }
+;
+                }
+                else
+                {
+                    dpt.DepartmanAd = txtDepartmanAd.Text;
+                    DepartmanBLL.DepartmanEkle(dpt);
+                    MessageBox.Show("Departman Eklendi");
+                    txtDepartmanAd.Clear();
+                }
             }
+        }
+        public bool isUpdate = false;
+        public DEPARTMAN detay = new DEPARTMAN();
+        private void FrmDepartmanBilgileri_Load(object sender, EventArgs e)
+        {
+            if (isUpdate)
+                txtDepartmanAd.Text = detay.DepartmanAd;
         }
     }
 }
