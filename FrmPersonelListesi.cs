@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
 
 namespace PersonelTakip
 {
@@ -145,6 +146,21 @@ namespace PersonelTakip
             detay.Resim = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString();
             detay.Adres = dataGridView1.Rows[e.RowIndex].Cells[12].Value.ToString();
             detay.DogumTarihi = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[13].Value);
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Silinsin mi?", "Dikkat", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                PersonelBLL.PersonelSil(detay.PersonelID);
+                string resimyol = Application.StartupPath + "\\resimler\\" + detay.Resim;
+                File.Delete(resimyol);
+                MessageBox.Show("Silindi");
+                combofull = false;
+                Doldur();
+                Temizle();
+            }
         }
     }
 }

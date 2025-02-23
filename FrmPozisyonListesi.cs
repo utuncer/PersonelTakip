@@ -66,5 +66,17 @@ namespace PersonelTakip
             detay.EskiDepartmanID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[4].Value);
             detay.PozisyonAD = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Silinsin mi?", "Dikkat", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                PozisyonBLL.PozisyonSil(detay.ID);
+                MessageBox.Show("Silindi");
+                liste = PozisyonBLL.PozisyonGetir();
+                dataGridView1.DataSource = liste;
+            }
+        }
     }
 }
