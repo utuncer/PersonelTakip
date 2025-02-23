@@ -175,5 +175,18 @@ namespace PersonelTakip
             detay.IsBaslamaTarihi = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[12].Value);
             detay.IsBitisTarihi = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells[13].Value);
         }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Silinsin mi?", "Dikkat", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                IsBLL.IsSil(detay.IsID);
+                MessageBox.Show("Silindi");
+                combofull = false;
+                Doldur();
+                Temizle();
+            }
+        }
     }
 }

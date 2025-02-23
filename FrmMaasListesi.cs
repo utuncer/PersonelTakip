@@ -161,5 +161,18 @@ namespace PersonelTakip
             detay.Ad = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             detay.Soyad = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
         }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Silinsin mi?", "Dikkat", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                MaasBLL.maasSil(detay.MaasID);
+                MessageBox.Show("Silindi");
+                combofull = false;
+                Doldur();
+                Temizle();
+            }
+        }
     }
 }

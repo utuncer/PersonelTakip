@@ -164,6 +164,7 @@ namespace PersonelTakip
             detay.UserNo = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
             detay.Sure = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[11].Value);
             detay.Aciklama = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
+            detay.IzinDurumID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[13].Value);
         }
 
         private void btnOnayla_Click(object sender, EventArgs e)
@@ -189,6 +190,24 @@ namespace PersonelTakip
                 MessageBox.Show("Reddedildi");
                 Temizle();
                 Doldur();
+            }
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Silinsin mi?", "Dikkat", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (detay.IzinDurumID == ComboStatic.Onayla || detay.IzinDurumID == ComboStatic.Reddedildi)
+                    MessageBox.Show("Onaylı ya da reddedilmiş izinleri silmelisiniz");
+                else
+                {
+                    IzinBLL.IzinSil(detay.IzinID);
+                    MessageBox.Show("Silindi");
+                    combofull = false;
+                    Doldur();
+                    Temizle();
+                }
             }
         }
     }
