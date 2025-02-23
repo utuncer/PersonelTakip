@@ -40,7 +40,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(50, 47);
+            this.label1.Location = new System.Drawing.Point(154, 82);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 25);
             this.label1.TabIndex = 0;
@@ -49,7 +49,7 @@
             // textUserNo
             // 
             this.textUserNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textUserNo.Location = new System.Drawing.Point(146, 47);
+            this.textUserNo.Location = new System.Drawing.Point(250, 82);
             this.textUserNo.Name = "textUserNo";
             this.textUserNo.Size = new System.Drawing.Size(155, 30);
             this.textUserNo.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(50, 96);
+            this.label3.Location = new System.Drawing.Point(154, 131);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 25);
             this.label3.TabIndex = 2;
@@ -67,7 +67,7 @@
             // textPassword
             // 
             this.textPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textPassword.Location = new System.Drawing.Point(146, 96);
+            this.textPassword.Location = new System.Drawing.Point(250, 131);
             this.textPassword.Name = "textPassword";
             this.textPassword.PasswordChar = '*';
             this.textPassword.Size = new System.Drawing.Size(155, 30);
@@ -76,7 +76,7 @@
             // btnGiris
             // 
             this.btnGiris.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnGiris.Location = new System.Drawing.Point(43, 237);
+            this.btnGiris.Location = new System.Drawing.Point(259, 203);
             this.btnGiris.Name = "btnGiris";
             this.btnGiris.Size = new System.Drawing.Size(114, 43);
             this.btnGiris.TabIndex = 2;
@@ -87,7 +87,7 @@
             // btnKapat
             // 
             this.btnKapat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnKapat.Location = new System.Drawing.Point(163, 237);
+            this.btnKapat.Location = new System.Drawing.Point(379, 203);
             this.btnKapat.Name = "btnKapat";
             this.btnKapat.Size = new System.Drawing.Size(114, 43);
             this.btnKapat.TabIndex = 3;
@@ -99,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 446);
+            this.ClientSize = new System.Drawing.Size(653, 370);
             this.Controls.Add(this.btnKapat);
             this.Controls.Add(this.btnGiris);
             this.Controls.Add(this.textPassword);

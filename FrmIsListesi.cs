@@ -62,7 +62,7 @@ namespace PersonelTakip
                 btnOnayla.Location = pointEkle;
                 btnKapat.Location = pointSil;
                 dto.Isler = dto.Isler.Where(x => x.PersonelID == UserStatic.PersonelID).ToList();
-                dataGridView1.DataSource = dto.Maaslar;
+                dataGridView1.DataSource = dto.Isler;
             }
         }
 

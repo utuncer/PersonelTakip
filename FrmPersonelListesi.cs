@@ -162,5 +162,10 @@ namespace PersonelTakip
                 Temizle();
             }
         }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            Excel.ExcelExport(dataGridView1);
+        }
     }
 }
