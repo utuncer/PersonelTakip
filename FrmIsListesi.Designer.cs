@@ -92,6 +92,7 @@
             this.btnOnayla.TabIndex = 0;
             this.btnOnayla.Text = "Onayla";
             this.btnOnayla.UseVisualStyleBackColor = true;
+            this.btnOnayla.Click += new System.EventHandler(this.btnOnayla_Click);
             // 
             // btnKapat
             // 

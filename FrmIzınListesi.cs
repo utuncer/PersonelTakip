@@ -43,6 +43,8 @@ namespace PersonelTakip
         {
             if (detay.IzinID == 0)
                 MessageBox.Show("Lütfen izin seçiniz");
+            else if (detay.IzinDurumID == ComboStatic.Onayla || detay.IzinDurumID == ComboStatic.Reddedildi)
+                MessageBox.Show("Onaylanmış ya da Reddedilmiş izinler güncellenemez");
             else
             {
                 FrmIzinBilgileri frm = new FrmIzinBilgileri();
@@ -100,6 +102,14 @@ namespace PersonelTakip
         private void FrmIzinListesi_Load(object sender, EventArgs e)
         {
             Doldur();
+            if (!UserStatic.isAdmin)
+            {
+                dto.Izinler = dto.Izinler.Where(x => x.PersonelID == UserStatic.PersonelID).ToList();
+                dataGridView1.DataSource = dto.Izinler;
+                panel3.Visible = false;
+                btnOnayla.Visible = false;
+                btnReddet.Visible = false;
+            }
         }
 
         private void cmbDepartman_SelectedIndexChanged(object sender, EventArgs e)

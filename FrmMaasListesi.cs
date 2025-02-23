@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DAL.DTO;
 using BLL;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Runtime.CompilerServices;
 
 namespace PersonelTakip
 {
@@ -55,6 +56,15 @@ namespace PersonelTakip
         private void FrmMaasListesi_Load(object sender, EventArgs e)
         {
             Doldur();
+            if (!UserStatic.isAdmin)
+            {
+                btnEkle.Visible = false;
+                btnGuncelle.Visible = false;
+                btnSil.Visible = false;
+                panel3.Visible = false;
+                dto.Maaslar = dto.Maaslar.Where(x => x.PersonelID == UserStatic.PersonelID).ToList();
+                dataGridView1.DataSource=dto.Maaslar;
+            }
         }
 
         private void Doldur()

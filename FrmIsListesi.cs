@@ -47,9 +47,23 @@ namespace PersonelTakip
         IsDetayDTO detay = new IsDetayDTO();
         private void FrmIsListesi_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(UserStatic.PersonelID.ToString() + " " + UserStatic.UserNo.ToString() + " " + UserStatic.isAdmin.ToString());
+            //MessageBox.Show(UserStatic.PersonelID.ToString() + " " + UserStatic.UserNo.ToString() + " " + UserStatic.isAdmin.ToString());
             //  pnlForAdmin.Visible = false;
             Doldur();
+            if (!UserStatic.isAdmin)
+            {
+                Point pointEkle = btnEkle.Location;
+                Point pointSil = btnSil.Location;
+                btnEkle.Visible = false;
+                btnSil.Visible = false;
+                btnGuncelle.Visible = false;
+                pnlForAdmin.Visible = false;
+                btnOnayla.Text = "Tamamla";
+                btnOnayla.Location = pointEkle;
+                btnKapat.Location = pointSil;
+                dto.Isler = dto.Isler.Where(x => x.PersonelID == UserStatic.PersonelID).ToList();
+                dataGridView1.DataSource = dto.Maaslar;
+            }
         }
 
         void Doldur()
@@ -66,7 +80,7 @@ namespace PersonelTakip
             dataGridView1.Columns[7].Visible = false;
             dataGridView1.Columns[8].Visible = false;
             dataGridView1.Columns[9].Visible = false;
-            dataGridView1.Columns[10].Visible = false;
+            dataGridView1.Columns[10].HeaderText = "Durumu";
             dataGridView1.Columns[11].Visible = false;
             dataGridView1.Columns[12].Visible = false;
             dataGridView1.Columns[13].Visible = false;
@@ -183,6 +197,24 @@ namespace PersonelTakip
             {
                 IsBLL.IsSil(detay.IsID);
                 MessageBox.Show("Silindi");
+                combofull = false;
+                Doldur();
+                Temizle();
+            }
+        }
+
+        private void btnOnayla_Click(object sender, EventArgs e)
+        {
+            if (UserStatic.isAdmin && detay.IsDurumID == OnayStatic.Onaylandı)
+                MessageBox.Show("Bu İş Onaylanmış");
+            else if (UserStatic.isAdmin && detay.IsDurumID == OnayStatic.Personelde && detay.PersonelID != UserStatic.PersonelID)
+                MessageBox.Show("İşin Önce Tamamlanması Gerekir");
+            else if (!UserStatic.isAdmin && detay.IsDurumID == OnayStatic.Tamamlandı)
+                MessageBox.Show("İş Zaten Tamamlandı");
+            else
+            {
+                IsBLL.IsGuncelle(detay.IsID);
+                MessageBox.Show("Onaylandı");
                 combofull = false;
                 Doldur();
                 Temizle();

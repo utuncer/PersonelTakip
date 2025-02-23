@@ -81,6 +81,17 @@ namespace PersonelTakip
                 resim2 = Application.StartupPath + "\\resimler\\" + detay.Resim;
                 txtResim.Text = resim2;
                 pictureBox1.Load(resim2);
+
+                if(!UserStatic.isAdmin)
+                {
+                    txtAd.Enabled = false;
+                    txtSoyad.Enabled = false;
+                    txtMaas.Enabled = false;
+                    txtUserNo.Enabled = false;
+                    chbIsAdmin.Enabled = false;
+                    cmbDepartman.Enabled = false;
+                    cmbPozisyon.Enabled = false; 
+                }
             }
 
         }
